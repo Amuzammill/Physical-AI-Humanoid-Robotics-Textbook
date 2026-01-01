@@ -6,30 +6,22 @@ const config = {
   tagline: 'Learning Physical AI and Robotics',
   favicon: 'img/favicon.ico',
 
-  // Set the production url of your site here
-  url: 'https://physicalhumanoidaitextbook.vercel.app',
-  // Set the /<baseUrl>/ pathname under which your site is served
-  // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/',
+  // Production URL of your site
+  url: 'https://physicalhumanoidaitextbook.vercel.app', // <-- YOUR VERCEL URL
+  baseUrl: '/', // <-- VERY IMPORTANT for Vercel to avoid 404
 
-  // GitHub pages deployment config.
-  // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'Amuzammill', // Usually your GitHub org/user name.
-  projectName: 'physical-ai-humanoid-robotics-textbook', // Usually your repo name.
+  // GitHub pages deployment config (optional)
+  organizationName: 'Amuzammill',
+  projectName: 'physical-ai-humanoid-robotics-textbook',
   deploymentBranch: 'gh-pages',
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
 
-  // Even if you don't use internationalization, you can use this field to set
-  // useful metadata like html lang. For example, if your site is Chinese, you
-  // may want to replace "en" with "zh-Hans".
   i18n: {
     defaultLocale: 'en',
-    locales: ['en', 'ur'], // Added Urdu locale
+    locales: ['en', 'ur'],
   },
-
-
 
   presets: [
     [
@@ -37,90 +29,76 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
-          sidebarPath: './sidebars.js',
-          // Please change this to your repo. Suffix with a / for GitHub pages deployment.
-          editUrl: 'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+          sidebarPath: require.resolve('./sidebars.js'), // <-- must use require.resolve
+          editUrl: 'https://github.com/Amuzammill/Physical-AI-Humanoid-Textbook/edit/master/',
         },
         blog: {
           showReadingTime: true,
-          // Please change this to your repo. Suffix with a / for GitHub pages deployment.
-          editUrl: 'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+          editUrl: 'https://github.com/Amuzammill/Physical-AI-Humanoid-Textbook/edit/master/',
         },
         theme: {
-          customCss: './src/css/custom.css',
+          customCss: require.resolve('./src/css/custom.css'),
         },
       }),
     ],
   ],
 
-  themeConfig:
-    /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
-    ({
-      // Replace with your project's social card
-      image: 'img/ph-ai-logo.png',
-      navbar: {
-        title: 'Physical AI & Humanoid Robotics Textbook',
-        logo: {
-          alt: 'My Site Logo',
-          src: 'img/ph-ai-logo.png',
+  themeConfig: {
+    image: 'img/ph-ai-logo.png',
+    navbar: {
+      title: 'Physical AI & Humanoid Robotics Textbook',
+      logo: {
+        alt: 'My Site Logo',
+        src: 'img/ph-ai-logo.png',
+      },
+      items: [
+        {
+          type: 'docSidebar',
+          sidebarId: 'tutorialSidebar',
+          position: 'left',
+          label: 'Textbook',
         },
-        items: [
-          {
-            type: 'docSidebar',
-            sidebarId: 'tutorialSidebar',
-            position: 'left',
-            label: 'Textbook',
-          },
-          {
-            href: 'https://github.com/Amuzammill',
-            label: 'GitHub',
-            position: 'right',
-          },
-          {
-            type: 'localeDropdown',
-            position: 'right',
-            i18n: {
-  defaultLocale: 'en',
-  locales: ['en', 'ur'],
-  localeConfigs: {
-    ur: {
-      label: 'اردو',
-      direction: 'rtl',
+        {
+          href: 'https://github.com/Amuzammill',
+          label: 'GitHub',
+          position: 'right',
+        },
+        {
+          type: 'localeDropdown',
+          position: 'right',
+          dropdownItemsAfter: [],
+        },
+      ],
+    },
+    footer: {
+      style: 'dark',
+      links: [
+        {
+          title: 'Docs',
+          items: [
+            {
+              label: 'Introduction',
+              to: '/docs/introduction/intro',
+            },
+          ],
+        },
+        {
+          title: 'More',
+          items: [
+            {
+              label: 'GitHub',
+              href: 'https://github.com/Amuzammill',
+            },
+          ],
+        },
+      ],
+      copyright: `Copyright © ${new Date().getFullYear()} Physical AI & Humanoid Robotics Textbook, Built with ❤️ by Muzamil Ahmed.`,
+    },
+    prism: {
+      theme: prismThemes.github,
+      darkTheme: prismThemes.dracula,
     },
   },
-},
-          },
-        ],
-      },
-      footer: {
-        style: 'dark',
-        links: [
-          {
-            title: 'Docs',
-            items: [
-              {
-                label: 'Introduction',
-                to: '/docs/introduction/intro',
-              },
-            ],
-          },
-          {
-            title: 'More',
-            items: [
-              {
-                label: 'GitHub',
-                href: 'https://github.com/Amuzammill',
-              },
-            ],
-          },
-        ],
-        copyright: `Copyright © ${new Date().getFullYear()} Physical AI & Humanoid Robotics Textbook, Built with ❤️ by Muzamil Ahmed.`,
-      },
-      prism: {
-        theme: prismThemes.github,
-        darkTheme: prismThemes.dracula,
-      },
-    }),
 };
 
 export default config;
